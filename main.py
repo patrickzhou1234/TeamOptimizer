@@ -12,7 +12,7 @@ nameidlist = {
 
 }
 
-synergylist = []
+synergyList = []
 
 i=0
 
@@ -32,7 +32,12 @@ def renderresult():
     synergyMembers = synergyMembers.split(":")
     synergyElement.append(synergyMembers)
     synergyElement.append(synergyScore)
-    synergylist.append(synergyElement)
+    synergyList.append(synergyElement)
+    for n in range(0, len(synergyList)):
+      for k in range(0, len(synergyList[n][0])):
+        if (synergyList[n][0][k] in nameidlist.keys()):
+          synergyList[n][0][k] = nameidlist[synergyList[n][0][k]]
+
   elif 'name' in request.form and 'score' in request.form:
     global i
     name = request.form['name']
@@ -41,6 +46,10 @@ def renderresult():
     idlist[i]=score
     nameidlist[name]=i
     i+=1
-  return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergylist=synergylist)
+    for n in range(0, len(synergyList)):
+      for k in range(0, len(synergyList[n][0])):
+        if (synergyList[n][0][k] in nameidlist.keys()):
+          synergyList[n][0][k] = nameidlist[synergyList[n][0][k]]
+  return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergyList=synergyList)
 
 app.run(host='0.0.0.0', port=80)
