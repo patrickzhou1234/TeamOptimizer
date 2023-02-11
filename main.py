@@ -12,6 +12,8 @@ nameidlist = {
 
 }
 
+synergylist = []
+
 i=0
 
 app = Flask(__name__)
@@ -23,13 +25,22 @@ def index():
 
 @app.route('/', methods=['POST'])
 def renderresult():
-  global i
-  name = request.form['name']
-  score = request.form['score']
-  namelist[name]=score
-  idlist[i]=score
-  nameidlist[name]=i
-  i+=1
-  return render_template('index.html', result=namelist, idlist=idlist)
+  if 'synergyMembers' in request.form and 'synergyScore' in request.form:
+    synergyElement = []
+    synergyMembers = request.form['synergyMembers']
+    synergyScore = request.form['synergyScore']
+    synergyMembers = synergyMembers.split(":")
+    synergyElement.append(synergyMembers)
+    synergyElement.append(synergyScore)
+    synergylist.append(synergyElement)
+  else:
+    global i
+    name = request.form['name']
+    score = request.form['score']
+    namelist[name]=score
+    idlist[i]=score
+    nameidlist[name]=i
+    i+=1
+  return render_template('index.html', result=namelist, idlist=idlist, synergylist=synergylist)
 
 app.run(host='0.0.0.0', port=80)

@@ -20,12 +20,23 @@
       <label for="score" class="form-label">Score</label>
       <input id="score" type="number" class="form-control" name="score" placeholder="number" autocomplete="off">
     </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" type="submit">Submit Member</button>
   </form>
   <p>{{result}}</p>
   <p>{{idlist}}</p>
   <p>{{nameidlist}}</p>
-
+  <form onsubmit="displayConfirm()" method="POST">
+    <div class="mb-3">
+      <label for="synergyMembers" class="form-label">Synergy Member List</label>
+      <input id="synergyMembers" type="text" class="form-control" name="synergyMembers" placeholder="Syntax: member1:member2:...memberN" autocomplete="off">
+    </div>
+    <div class="mb-3">
+      <label for="synergyScore" class="form-label">Synergy Score</label>
+      <input id="synergyScore" type="number" class="form-control" name="synergyScore" placeholder="number" autocomplete="off">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit Synergy</button>
+  </form>
+  <p>{{synergylist}}</p>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/script.js') }}"></script>
 </body>
 </html>
