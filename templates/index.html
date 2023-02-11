@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.png') }}" type="image/x-icon">
   <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/style.css') }}">
-  <title>Project Title</title>
+  <title>Team Optimizer</title>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/sweetalert2.all.min.js') }}"></script>
 </head>
@@ -37,6 +38,18 @@
     <button class="btn btn-primary" type="submit">Submit Synergy</button>
   </form>
   <p>Synergy List: {{synergyList}}</p>
+  <form onsubmit="displayComputed()" method="POST">
+    <div class="mb-3">
+      <label for="numberTeams" class="form-label">Number of Teams</label>
+      <input id="numberTeams" type="text" class="form-control" name="numberTeams" placeholder="number" autocomplete="off">
+    </div>
+    <button class="btn btn-primary" type="submit">Compute Fairest Teams</button>
+  </form>
+  <!-- insert answer here -->
+  <br>
+  <form onsubmit="clearContent()" method="POST">
+    <button class="btn btn-primary" type="submit">Reset</button>
+  </form>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/script.js') }}"></script>
 </body>
 </html>

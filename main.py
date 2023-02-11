@@ -50,6 +50,15 @@ def renderresult():
       for k in range(0, len(synergyList[n][0])):
         if (synergyList[n][0][k] in nameidlist.keys()):
           synergyList[n][0][k] = nameidlist[synergyList[n][0][k]]
+  elif 'numberTeams' in request.form:
+    numberTeams = request.form['numberTeams']
+    print(numberTeams)
+  else:
+    namelist.clear()
+    idlist.clear()
+    nameidlist.clear()
+    synergyList.clear()
+  
   return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergyList=synergyList)
 
 app.run(host='0.0.0.0', port=80)

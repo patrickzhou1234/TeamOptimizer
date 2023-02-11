@@ -8,3 +8,19 @@ function displayConfirm() {
         icon: "success",
     });
 }
+
+function displayComputed() {
+    Swal.fire({
+        title: "Successfully Submitted",
+        text: "Submitted Content to our Servers",
+        icon: "success",
+    });
+}
+
+function clearContent() {
+    Swal.fire({
+        title: "Successfully Cleared",
+        text: "Successfully Cleared Server Contents",
+        icon: "success",
+    });
+}
