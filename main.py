@@ -33,7 +33,7 @@ def renderresult():
     synergyElement.append(synergyMembers)
     synergyElement.append(synergyScore)
     synergylist.append(synergyElement)
-  else:
+  elif 'name' in request.form and 'score' in request.form:
     global i
     name = request.form['name']
     score = request.form['score']
@@ -41,6 +41,6 @@ def renderresult():
     idlist[i]=score
     nameidlist[name]=i
     i+=1
-  return render_template('index.html', result=namelist, idlist=idlist, synergylist=synergylist)
+  return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergylist=synergylist)
 
 app.run(host='0.0.0.0', port=80)

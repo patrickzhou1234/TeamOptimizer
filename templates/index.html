@@ -22,9 +22,9 @@
     </div>
     <button class="btn btn-primary" type="submit">Submit Member</button>
   </form>
-  <p>{{result}}</p>
-  <p>{{idlist}}</p>
-  <p>{{nameidlist}}</p>
+  <p>Name List: {{namelist}}</p>
+  <p>ID List: {{idlist}}</p>
+  <p>Name to ID Correlation: {{nameidlist}}</p>
   <form onsubmit="displayConfirm()" method="POST">
     <div class="mb-3">
       <label for="synergyMembers" class="form-label">Synergy Member List</label>
@@ -36,7 +36,7 @@
     </div>
     <button class="btn btn-primary" type="submit">Submit Synergy</button>
   </form>
-  <p>{{synergylist}}</p>
+  <p>Synergy List: {{synergylist}}</p>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/script.js') }}"></script>
 </body>
 </html>
