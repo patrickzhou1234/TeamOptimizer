@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/style.css') }}">
   <title>Project Title</title>
   <script type="text/javascript" src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='/js/sweetalert2.all.min.js') }}"></script>
 </head>
 <body>
-  <form method="POST">
+  <form onsubmit="displayConfirm()" method="POST">
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
       <input id="name" type="text" class="form-control" name="name" placeholder="name" autocomplete="off" autofocus>
@@ -23,6 +24,8 @@
   </form>
   <p>{{result}}</p>
   <p>{{idlist}}</p>
+  <p>{{nameidlist}}</p>
+
   <script type="text/javascript" src="{{ url_for('static', filename='/js/script.js') }}"></script>
 </body>
 </html>
