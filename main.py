@@ -10,13 +10,9 @@ def index():
 
 @app.route('/', methods=['POST'])
 def renderresult():
-  number = request.form['text']
-  if (number=="1"):
-    result="true"
-  else:
-    result="false"
-  print(number)
-
+  name = request.form['name']
+  number = request.form['score']
+  result=name+number
   return render_template('index.html', result=result)
 
 app.run(host='0.0.0.0', port=80)
