@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import TeamOptimizer
 
 namelist = {
   
@@ -28,7 +29,7 @@ def renderresult():
   if 'synergyMembers' in request.form and 'synergyScore' in request.form:
     synergyElement = []
     synergyMembers = request.form['synergyMembers']
-    synergyScore = request.form['synergyScore']
+    synergyScore = int(request.form['synergyScore'])
     synergyMembers = synergyMembers.split(":")
     synergyElement.append(synergyMembers)
     synergyElement.append(synergyScore)
@@ -41,7 +42,7 @@ def renderresult():
   elif 'name' in request.form and 'score' in request.form:
     global i
     name = request.form['name']
-    score = request.form['score']
+    score = int(request.form['score'])
     namelist[name]=score
     idlist[i]=score
     nameidlist[name]=i
@@ -52,7 +53,8 @@ def renderresult():
           synergyList[n][0][k] = nameidlist[synergyList[n][0][k]]
   elif 'numberTeams' in request.form:
     numberTeams = request.form['numberTeams']
-    print(numberTeams)
+    finalResult = TeamOptimizer.simulate(idlist, int(numberTeams), synergyList)
+    return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergyList=synergyList, finalResult=finalResult)
   else:
     namelist.clear()
     idlist.clear()
