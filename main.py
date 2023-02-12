@@ -17,6 +17,18 @@ synergyList = []
 
 i=0
 
+def make_Names(final_teams, nameidlist):
+  name_array = []
+  for team in final_teams:
+    temp = []
+    for id in team:
+      for name in nameidlist:
+        if (nameidlist[name]==id):
+          temp.append(name)
+
+    name_array.append(temp)
+  return name_array
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -38,7 +50,6 @@ def renderresult():
       for k in range(0, len(synergyList[n][0])):
         if (synergyList[n][0][k] in nameidlist.keys()):
           synergyList[n][0][k] = nameidlist[synergyList[n][0][k]]
-
   elif 'name' in request.form and 'score' in request.form:
     global i
     name = request.form['name']
@@ -54,6 +65,7 @@ def renderresult():
   elif 'numberTeams' in request.form:
     numberTeams = request.form['numberTeams']
     finalResult = TeamOptimizer.simulate(idlist, int(numberTeams), synergyList)
+    finalResult = make_Names(finalResult, nameidlist)
     return render_template('index.html', namelist=namelist, idlist=idlist, nameidlist=nameidlist, synergyList=synergyList, finalResult=finalResult)
   else:
     namelist.clear()
